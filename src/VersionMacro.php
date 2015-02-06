@@ -13,8 +13,8 @@ class VersionMacro extends MacroSet
 	public static function install(Compiler $compiler)
 	{
 		$me = new static($compiler);
-		$me->addMacro('v', array($me, 'version'));
-		$me->addMacro('vn', array($me, 'versionNumber'));
+		$me->addMacro('v', array($me, 'macroVersion'));
+		$me->addMacro('vn', array($me, 'macroVersionNumber'));
 		return $me;
 	}
 
