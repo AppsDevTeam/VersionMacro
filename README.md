@@ -20,6 +20,13 @@ composer.json:
 $ composer require adt/version-macro
 ```
 
+```
+nette:
+	latte:
+		macros:
+			- \ADT\Latte\Macros\VersionMacro::install
+```
+
 ## Usage
 
 - **`{v}`** - results in `?v=123`
