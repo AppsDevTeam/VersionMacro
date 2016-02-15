@@ -45,10 +45,17 @@ class VersionMacro extends MacroSet
 
 		$out = 0;
 
-		$appDir = \Nette\Environment::getContext()->parameters['appDir'];
+		$parmeters = \Nette\Environment::getContext()->parameters;
 
-		$hpDeploymentFile = $appDir . '/../../.htdeployment';
-		$ftpDeploymentFile = $appDir . '/../.git-ftp.log';
+		$appDir = $parmeters['appDir'];
+
+		$hpDeploymentFile = isset($parmeters['versionMacro']['htdeployment'])
+			? $parmeters['versionMacro']['htdeployment']
+			: $appDir . '/../../.htdeployment';
+
+		$ftpDeploymentFile = isset($parmeters['versionMacro']['gitFtp'])
+			? $parmeters['versionMacro']['gitFtp']
+			: $appDir . '/../.git-ftp.log';
 
 		if (is_file($hpDeploymentFile)) {
 			$out = filemtime($hpDeploymentFile);
