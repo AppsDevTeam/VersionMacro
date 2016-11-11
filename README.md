@@ -1,6 +1,6 @@
 ## ADT\Latte\Macros\VersionMacro
 
-Returns `.htdeployment` or `.git-ftp.log` [filemtime](http://php.net/manual/en/function.filemtime.php).
+Returns `.htdeployment` [filemtime](http://php.net/manual/en/function.filemtime.php).
 
 ## Installation
 
@@ -25,6 +25,13 @@ nette:
 	latte:
 		macros:
 			- \ADT\Latte\Macros\VersionMacro::install
+```
+
+Default configuration:
+```
+parameters:
+	versionMacro:
+		htdeployment: '/../.htdeployment'
 ```
 
 ## Usage
