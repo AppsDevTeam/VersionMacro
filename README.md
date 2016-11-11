@@ -31,7 +31,7 @@ Default configuration:
 ```
 parameters:
 	versionMacro:
-		htdeployment: '/../.htdeployment'
+		htdeployment: '%appDir%/../.htdeployment'
 ```
 
 ## Usage
