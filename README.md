@@ -21,10 +21,12 @@ $ composer require adt/version-macro
 ```
 
 ```
-nette:
-	latte:
-		macros:
-			- \ADT\Latte\Macros\VersionMacro::install
+latte:
+	macros:
+		- @\ADT\Latte\Macros\VersionMacro::install
+
+services:
+	- ADT\Latte\Macros\VersionMacro(%versionMacro%, %appDir%)
 ```
 
 Default configuration:

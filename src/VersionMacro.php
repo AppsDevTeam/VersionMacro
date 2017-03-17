@@ -7,14 +7,23 @@ use \Latte\MacroNode;
 use \Latte\Macros\MacroSet;
 use \Latte\PhpWriter;
 
+class VersionMacro extends \Nette\Object {
 
-class VersionMacro extends MacroSet
-{
-	public static function install(Compiler $compiler)
-	{
-		$me = new static($compiler);
-		$me->addMacro('v', array($me, 'macroVersion'));
-		$me->addMacro('vn', array($me, 'macroVersionNumber'));
+	/** @var array */
+	protected $parameters;
+
+	/** @var string */
+	protected $appDir;
+
+	public function __construct($parameters, $appDir) {
+		$this->parameters = $parameters;
+		$this->appDir = $appDir;
+	}
+
+	public function install(Compiler $compiler) {
+		$me = new MacroSet($compiler);
+		$me->addMacro('v', array($this, 'macroVersion'));
+		$me->addMacro('vn', array($this, 'macroVersionNumber'));
 		return $me;
 	}
 
@@ -24,7 +33,7 @@ class VersionMacro extends MacroSet
 	 */
 	public function macroVersion(MacroNode $node, PhpWriter $writer)
 	{
-		return "echo '?v=". static::getVersion() ."'";
+		return "echo '?v=". $this->getVersion() ."'";
 	}
 
 	/**
@@ -33,10 +42,10 @@ class VersionMacro extends MacroSet
 	 */
 	public function macroVersionNumber(MacroNode $node, PhpWriter $writer)
 	{
-		return "echo '". static::getVersion() ."'";
+		return "echo '". $this->getVersion() ."'";
 	}
 
-	public static function getVersion() {
+	public function getVersion() {
 		static $out = NULL;
 
 		if ($out !== NULL) {
@@ -45,12 +54,10 @@ class VersionMacro extends MacroSet
 
 		$out = 0;
 
-		$parameters = \Nette\Environment::getContext()->parameters;
+		$appDir = $this->appDir;
 
-		$appDir = $parameters['appDir'];
-
-		$hpDeploymentFile = isset($parameters['versionMacro']['htdeployment'])
-			? $parameters['versionMacro']['htdeployment']
+		$hpDeploymentFile = isset($this->parameters['htdeployment'])
+			? $this->parameters['htdeployment']
 			: $appDir . '/../.htdeployment';
 
 		if (is_file($hpDeploymentFile)) {
@@ -59,5 +66,4 @@ class VersionMacro extends MacroSet
 
 		return $out;
 	}
-
 }
