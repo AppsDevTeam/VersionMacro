@@ -6,21 +6,15 @@ Returns `.htdeployment` [filemtime](http://php.net/manual/en/function.filemtime.
 
 The best way to install is using [Composer](http://getcomposer.org/):
 
-composer.json:
-```
-"repositories": [
-	{
-		"type": "git",
-		"url": "https://github.com/AppsDevTeam/VersionMacro.git"
-    }
-]
-```
-
 ```sh
 $ composer require adt/version-macro
 ```
 
 ```
+parameters:
+	versionMacro:
+		timestampFile: '%wwwDir%/index.php'
+
 latte:
 	macros:
 		- @\ADT\Latte\Macros\VersionMacro::install
@@ -29,7 +23,7 @@ services:
 	- ADT\Latte\Macros\VersionMacro(%versionMacro%, %appDir%)
 ```
 
-Default configuration:
+Deprecated parameters names (we still support it):
 ```
 parameters:
 	versionMacro:

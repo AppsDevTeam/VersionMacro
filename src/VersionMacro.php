@@ -53,15 +53,19 @@ class VersionMacro extends \Nette\Object {
 		}
 
 		$out = 0;
+		$timestampFile = NULL;
 
-		$appDir = $this->appDir;
-
-		$hpDeploymentFile = isset($this->parameters['htdeployment'])
+		// Necháváme kvůli zpětné kompatibilitě:
+		$timestampFile = isset($this->parameters['htdeployment'])
 			? $this->parameters['htdeployment']
-			: $appDir . '/../.htdeployment';
+			: $this->appDir . '/../.htdeployment';
 
-		if (is_file($hpDeploymentFile)) {
-			$out = filemtime($hpDeploymentFile);
+		if (isset($this->parameters['timestampFile'])) {
+			$timestampFile = $this->parameters['timestampFile'];
+		}
+
+		if (is_file($timestampFile)) {
+			$out = filemtime($timestampFile);
 		}
 
 		return $out;
