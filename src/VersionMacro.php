@@ -7,8 +7,10 @@ use \Latte\MacroNode;
 use \Latte\Macros\MacroSet;
 use \Latte\PhpWriter;
 
-class VersionMacro extends \Nette\Object {
+class VersionMacro {
 
+	use \Nette\SmartObject;
+	
 	/** @var array */
 	protected $parameters;
 
