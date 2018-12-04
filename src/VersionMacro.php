@@ -6,6 +6,7 @@ use \Latte\Compiler;
 use \Latte\MacroNode;
 use \Latte\Macros\MacroSet;
 use \Latte\PhpWriter;
+use \Nette\InvalidArgumentException;
 
 class VersionMacro {
 
@@ -54,7 +55,6 @@ class VersionMacro {
 			return $out;
 		}
 
-		$out = 0;
 		$timestampFile = NULL;
 
 		// Necháváme kvůli zpětné kompatibilitě:
@@ -66,10 +66,10 @@ class VersionMacro {
 			$timestampFile = $this->parameters['timestampFile'];
 		}
 
-		if (is_file($timestampFile)) {
-			$out = filemtime($timestampFile);
+		if (! is_file($timestampFile)) {
+			throw new InvalidArgumentException("File '$timestampFile' not found or is not a file!");
 		}
 
-		return $out;
+		return filemtime($timestampFile);
 	}
 }
