@@ -11,8 +11,8 @@
 		}
 	],
 	"require": {
-		"latte/latte": "~2.2",
-	  	"nette/application": "^2.4.3 || ^3.0"
+		"latte/latte": "^2.2",
+	  	"nette/application": "^3.0"
 	},
 	"extra": {
 	},
