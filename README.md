@@ -1,6 +1,6 @@
 # Version macro
 
-Returns file modification time.
+Returns file modification time, which can be used for versioning css/js files or other assets.
 
 ## Installation
 
