@@ -1,4 +1,4 @@
-# version-macro
+# Version macro
 
 Returns file modification time.
 
