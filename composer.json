@@ -1,22 +1,19 @@
 {
 	"name": "adt/version-macro",
 	"type": "library",
-	"description": "Latte macros for Nette Framework.",
+	"description": "Latte version macro for Nette Framework.",
 	"keywords": ["ADT", "nette", "latte", "macros", "block-macros"],
 	"license": ["MIT"],
 	"authors": [
 		{
-			"name": "Apps Dev Team s.r.o.",
-			"homepage": "http://appsdevteam.com"
+			"name": "Apps Dev Team",
+			"homepage": "https://www.appsdevteam.com"
 		}
 	],
 	"require": {
-		"latte/latte": "^2.2",
-	  	"nette/application": "^3.0"
-	},
-	"extra": {
+		"latte/latte": "^2.2"
 	},
 	"autoload": {
-		"psr-4": { "ADT\\Latte\\Macros\\": "src/" }
+		"psr-4": { "ADT\\VersionMacro\\": "src/" }
 	}
 }
