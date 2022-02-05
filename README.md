@@ -1,6 +1,6 @@
-## ADT\Latte\Macros\VersionMacro
+# version-macro
 
-Returns `.htdeployment` [filemtime](http://php.net/manual/en/function.filemtime.php).
+Returns file modification time.
 
 ## Installation
 
@@ -10,25 +10,26 @@ The best way to install is using [Composer](http://getcomposer.org/):
 $ composer require adt/version-macro
 ```
 
-```
-parameters:
-	versionMacro:
-		timestampFile: '%wwwDir%/index.php'
+common.neon:
+```	
+services:
+	- ADT\Latte\Macros\VersionMacro(%versionMacro%, %appDir%)
 
 latte:
 	macros:
 		- @\ADT\Latte\Macros\VersionMacro::install
 
-services:
-	- ADT\Latte\Macros\VersionMacro(%versionMacro%, %appDir%)
 ```
 
-Deprecated parameters names (we still support it):
+remote.neon:
 ```
-parameters:
+services:
 	versionMacro:
-		htdeployment: '%appDir%/../.htdeployment'
+		setup:
+			- setTimestampFile(%timestampFile%)
 ```
+
+Without setting setTimestampFile returns always current time (which is fine for local development).
 
 ## Usage
 
