@@ -10,7 +10,7 @@ use \Nette\InvalidArgumentException;
 
 final class VersionMacro
 {
-	static private ?int $timestamp = null;
+	static private ?string $timestamp = null;
 	static private ?string $timestampFile = null;
 
 	public function setTimestampFile(string $timestampFile): self
@@ -52,16 +52,16 @@ final class VersionMacro
 		return "echo '" . self::getVersion() . "'";
 	}
 
-	private static function getVersion(): int
+	private static function getVersion(): string
 	{
-		if (self::$timestamp) {
+		if (self::$timestamp !== null) {
 			return self::$timestamp;
 		}
 
-		self::$timestamp = time();
+		self::$timestamp = '';
 
 		if (self::$timestampFile) {
-			self::$timestamp = filemtime(self::$timestampFile);
+			self::$timestamp = (string) filemtime(self::$timestampFile);
 		}
 
 		return self::$timestamp;
