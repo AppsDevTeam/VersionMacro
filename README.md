@@ -29,7 +29,7 @@ services:
 			- setTimestampFile(%timestampFile%)
 ```
 
-Without setting setTimestampFile returns always current time (which is fine for local development).
+Without setting timestamp file, version macro returns empty string.
 
 ## Usage
 
