@@ -13,11 +13,11 @@ $ composer require adt/version-macro
 common.neon:
 ```	
 services:
-	- ADT\Latte\Macros\VersionMacro(%versionMacro%, %appDir%)
+	versionMacro: ADT\VersionMacro\VersionMacro
 
 latte:
 	macros:
-		- @\ADT\Latte\Macros\VersionMacro::install
+		- @ADT\VersionMacro\VersionMacro::install
 
 ```
 
