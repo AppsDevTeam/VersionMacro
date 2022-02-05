@@ -1,6 +1,8 @@
 <?php
 
-namespace ADT\Latte\Macros;
+declare(strict_types=1);
+
+namespace ADT\VersionMacro;
 
 use \Latte\Compiler;
 use \Latte\MacroNode;
